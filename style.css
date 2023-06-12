@@ -1,0 +1,30 @@
+body {
+    background-image: linear-gradient(25deg, #161153, #d6d3f1);
+    background-attachment: fixed;
+}
+
+.list-group {
+    padding: 8em;
+    padding-right: 10em;
+    padding-left: 10em;
+    max-width: 800px;
+    min-width: 500px;
+    margin: auto;
+}
+
+.rem {
+    font-size: 0.75em;
+}
+
+.btn {
+    background-color: #187cce;
+    border-color: #ffffff15;
+    font-family: monospace;
+}
+
+.list-group-item {
+    background-color: #00000046;
+    border-color: #0201011c;
+    color: whitesmoke;
+    text-align: right;
+}
