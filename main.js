@@ -1,8 +1,7 @@
 let digitButtons = document.querySelectorAll(".digit");
-let label = document.querySelector(".label");
+let label = document.querySelector("label");
 
 let clearButton = document.querySelector(".clear");
-let powButton = document.querySelector(".pow");
 let divButton = document.querySelector(".div");
 let multButton = document.querySelector(".mult");
 let addButton = document.querySelector(".add");
@@ -19,7 +18,7 @@ for (let i = 0; i < digitButtons.length; i++)
 {
     let digit = (i + 1) % 10;
     digitButtons[i].onclick = function() {
-        if (lastOperation == "null" && lastTextContent == "") {
+        if (lastTextContent == "") {
             result = label.textContent = lastDigit =
             lastTextContent = digit;
             isLastDigit = true;
@@ -42,9 +41,6 @@ for (let i = 0; i < digitButtons.length; i++)
 
 function processResult() {
     switch (lastOperation) {
-        case "^":
-            result **= lastDigit;
-            break;
         case "/":
             result /= lastDigit;
             break;
@@ -63,8 +59,14 @@ function processResult() {
 }
 
 function showResult() {
-    processResult();
+    if (!isLastDigit) {
+        lastOperation = "null";
+        isLastDigit = false;
+    }
+    else
+        processResult();
     label.textContent = result;
+    lastTextContent = result;
 }
 
 function processButton(operation) {
@@ -72,7 +74,7 @@ function processButton(operation) {
         label.textContent = lastTextContent;
     else
         processResult();
-
+    
     lastOperation = operation;
     lastTextContent = label.textContent;
     label.textContent += " " + operation + " ";
@@ -83,10 +85,6 @@ clearButton.onclick = function() {
     label.textContent = result;
     lastOperation = "null";
     lastTextContent = "";
-}
-
-powButton.onclick = function() {
-    processButton("^");
 }
 
 divButton.onclick = function() {
@@ -107,5 +105,4 @@ subButton.onclick = function() {
 
 equalButton.onclick = function() {
     showResult();
-    lastOperation = "null";
 }
